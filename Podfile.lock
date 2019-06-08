@@ -1,0 +1,73 @@
+PODS:
+  - chatclient (0.0.1):
+    - MaterialComponents/Chips
+    - MessageKit
+  - InputBarAccessoryView (4.2.2)
+  - MaterialComponents/AnimationTiming (84.5.0)
+  - MaterialComponents/Chips (84.5.0):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/TextFields
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Ink (84.5.0):
+    - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (84.5.0)
+  - MaterialComponents/private/Application (84.5.0)
+  - MaterialComponents/private/Math (84.5.0)
+  - MaterialComponents/Ripple (84.5.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (84.5.0)
+  - MaterialComponents/ShadowLayer (84.5.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (84.5.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (84.5.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/TextFields (84.5.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (84.5.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
+  - MessageKit (3.0.0):
+    - InputBarAccessoryView (~> 4.2.2)
+
+DEPENDENCIES:
+  - chatclient (from `chatclient.podspec`)
+  - MaterialComponents/Chips
+  - MessageKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - InputBarAccessoryView
+    - MaterialComponents
+    - MDFInternationalization
+    - MessageKit
+
+EXTERNAL SOURCES:
+  chatclient:
+    :path: chatclient.podspec
+
+SPEC CHECKSUMS:
+  chatclient: 403d45230a252bb5bb5d83cd795ce3dff2e2e013
+  InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
+  MaterialComponents: 4f1d0258d14aaf47215c2d710d3b5d915e370622
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
+
+PODFILE CHECKSUM: c4cec080c3d34bafd3f92e87921a7b9c55a89bc9
+
+COCOAPODS: 1.6.1
