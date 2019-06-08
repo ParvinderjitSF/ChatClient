@@ -192,9 +192,12 @@ extension ChatViewController : MessagesDisplayDelegate {
 
 extension ChatViewController : MessagesLayoutDelegate {
     public func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        let bundle = Bundle(for: type(of: self))
-        let avatar1 = UIImage(named: "avatar", in: bundle, compatibleWith: nil)
-        let avatar2 = UIImage(named: "avatar1", in: bundle, compatibleWith: nil)
+        var frameworkBundle = Bundle(for: ChatViewController.self)
+        if let bundle = Bundle.init(url: frameworkBundle.resourceURL!.appendingPathComponent("Resource.bundle")) {
+            frameworkBundle = bundle
+        }
+        let avatar1 = UIImage(named: "avatar", in: frameworkBundle, compatibleWith: nil)
+        let avatar2 = UIImage(named: "avatar1", in: frameworkBundle, compatibleWith: nil)
         let avatar = isFromCurrentSender(message: message) ?
             avatar1 : avatar2
         avatarView.set(avatar: Avatar(image: avatar, initials: ""))

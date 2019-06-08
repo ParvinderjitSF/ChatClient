@@ -96,6 +96,7 @@ Pod::Spec.new do |spec|
 
   spec.resources = "ChatClient/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 
+  spec.resource_bundle = { 'ResourceBundle' => 'Media.xcassets' }
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -105,7 +106,7 @@ Pod::Spec.new do |spec|
   #  non-essential files like tests, examples and documentation.
   #
 
-  # spec.resource  = "icon.png"
+   spec.resource  = 'ChatClient/Media.xcassets'
   # spec.resources = "Resources/*.png"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
