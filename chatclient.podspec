@@ -79,7 +79,6 @@ Pod::Spec.new do |spec|
   #
 
    spec.source       = { :git => "https://github.com/ParvinderjitSF/ChatClient.git" }
-   spec.swift_version = '4.2'
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
