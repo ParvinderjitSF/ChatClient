@@ -1,5 +1,5 @@
 PODS:
-  - chatclient (0.0.1):
+  - ChatClient (0.0.3):
     - MaterialComponents/Chips
     - MessageKit
   - InputBarAccessoryView (4.2.2)
@@ -46,7 +46,7 @@ PODS:
     - InputBarAccessoryView (~> 4.2.2)
 
 DEPENDENCIES:
-  - chatclient (from `chatclient.podspec`)
+  - ChatClient (from `chatclient.podspec`)
   - MaterialComponents/Chips
   - MessageKit
 
@@ -58,16 +58,16 @@ SPEC REPOS:
     - MessageKit
 
 EXTERNAL SOURCES:
-  chatclient:
+  ChatClient:
     :path: chatclient.podspec
 
 SPEC CHECKSUMS:
-  chatclient: 403d45230a252bb5bb5d83cd795ce3dff2e2e013
+  ChatClient: dacd1f03941bc0cc920cd9f57f8d2e51d10bc70b
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   MaterialComponents: 4f1d0258d14aaf47215c2d710d3b5d915e370622
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
 
-PODFILE CHECKSUM: c4cec080c3d34bafd3f92e87921a7b9c55a89bc9
+PODFILE CHECKSUM: f034c9085f0c638256e327b0d3e2e5c656f8540c
 
 COCOAPODS: 1.6.1

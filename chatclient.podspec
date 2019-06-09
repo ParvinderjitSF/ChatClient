@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "ChatClient"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.3"
   spec.summary      = "A short description of chatclient."
 
   # This description is used to generate tags and improve search results.
@@ -79,6 +79,7 @@ Pod::Spec.new do |spec|
   #
 
    spec.source       = { :git => "https://github.com/ParvinderjitSF/ChatClient.git" }
+   spec.swift_version = '4.2'
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
