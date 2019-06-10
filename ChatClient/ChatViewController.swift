@@ -26,6 +26,16 @@ public class Configuration {
     private init(){}
     open var currentUser: ChatUserType!
     public var hints = [String]()
+    private var _messageFontName: String?
+    public var messageFontName: String? {
+        get {
+            return _messageFontName
+        }
+        set {
+            _messageFontName = newValue
+        }
+    }
+
 }
 
 open class ChatViewController: MessagesViewController, MessagesDataSource {
@@ -33,6 +43,8 @@ open class ChatViewController: MessagesViewController, MessagesDataSource {
     open private(set) var chatMessages = [ChatMessageType]()
     
     public var messageSentCallback: ((ChatMessageType) -> ())?
+    
+    public var didCloseCallback: (()->())?
     
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +62,20 @@ open class ChatViewController: MessagesViewController, MessagesDataSource {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.presentingViewController != nil {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Close", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissSelf))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Close", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissSelf))
+        }
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if self.isMovingFromParent {
+            didCloseCallback?()
         }
     }
     
     @objc
     private func dismissSelf() {
+        self.didCloseCallback?()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -188,6 +208,8 @@ extension ChatViewController : MessagesDisplayDelegate {
         print(message.sender.senderId ,message.sender.displayName, message.kind)
         return .bubbleTail(tail, .curved)
     }
+    
+    
 }
 
 extension ChatViewController : MessagesLayoutDelegate {

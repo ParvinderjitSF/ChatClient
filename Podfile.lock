@@ -62,7 +62,7 @@ EXTERNAL SOURCES:
     :path: chatclient.podspec
 
 SPEC CHECKSUMS:
-  ChatClient: dacd1f03941bc0cc920cd9f57f8d2e51d10bc70b
+  ChatClient: 32d96b027f60e2332c73cacb7754c68ed93c8353
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   MaterialComponents: 4f1d0258d14aaf47215c2d710d3b5d915e370622
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
@@ -70,4 +70,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f034c9085f0c638256e327b0d3e2e5c656f8540c
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.0

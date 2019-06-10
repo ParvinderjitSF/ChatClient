@@ -36,6 +36,10 @@ class ViewController: UIViewController {
             })
         }
         
+        controller.didCloseCallback = {
+            print("close callback")
+        }
+        
         Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
             if controller.view.window != nil {
                 controller.insertMessage(ChatMessage(text: "Rider Message ",sender : RiderMockUser()))
@@ -57,6 +61,10 @@ class ViewController: UIViewController {
                     controller.updateMessageStatus(messageId: message.messageId, status: status)
                 }
             })
+        }
+        
+        controller.didCloseCallback = {
+            print("close callback")
         }
         
         Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
