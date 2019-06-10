@@ -21,12 +21,19 @@ public enum MessageDeliveryStatus {
     case none
 }
 
+
 public class Configuration {
     public private(set) static var shared = Configuration()
     private init(){}
     open var currentUser: ChatUserType!
     public var hints = [String]()
     private var _messageFontName: String?
+    open var closeButtonTitle = "Close"
+    open var deliveredMessage = "Delivered"
+    open var sendButtonTitle = "Send"
+    open var deliverFailureMessage = "Error"
+    open var sendingMessage = "Sending..."
+    
     public var messageFontName: String? {
         get {
             return _messageFontName
@@ -35,7 +42,7 @@ public class Configuration {
             _messageFontName = newValue
         }
     }
-
+    
 }
 
 open class ChatViewController: MessagesViewController, MessagesDataSource {
@@ -57,15 +64,16 @@ open class ChatViewController: MessagesViewController, MessagesDataSource {
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
         messageInputBar.separatorLine.height = 0
+        messageInputBar.sendButton.setTitle(Configuration.shared.sendButtonTitle, for: UIControl.State.normal)
     }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.presentingViewController != nil {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Close", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissSelf))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: Configuration.shared.closeButtonTitle, style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissSelf))
         }
-        DispatchQueue.main.async {
-            self.messageInputBar.inputTextView.becomeFirstResponder()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.messageInputBar.inputTextView.becomeFirstResponder()
         }
         
     }
@@ -99,14 +107,14 @@ open class ChatViewController: MessagesViewController, MessagesDataSource {
         guard let chatMessage = message as? ChatMessage else { return nil }
         switch chatMessage.messageStatus {
         case .delivered:
-            return NSAttributedString(string: "Delivered", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+            return NSAttributedString(string: Configuration.shared.deliveredMessage, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10), NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         case .error:
-           return NSAttributedString(string: "Error", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10), NSAttributedString.Key.foregroundColor: UIColor.red])
+            return NSAttributedString(string: Configuration.shared.deliverFailureMessage, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10), NSAttributedString.Key.foregroundColor: UIColor.red])
         default:
             return nil
-        
+            
         }
-
+        
     }
     
     public func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
@@ -171,7 +179,7 @@ open class ChatViewController: MessagesViewController, MessagesDataSource {
     public func isFromCurrentSender(message: MessageType) -> Bool {
         return message.sender.senderId == Configuration.shared.currentUser.senderId
     }
-   
+    
 }
 
 
@@ -195,14 +203,14 @@ extension ChatViewController : InputBarAccessoryViewDelegate {
         
         // Send button activity animation
         messageInputBar.sendButton.startAnimating()
-        messageInputBar.inputTextView.placeholder = "Sending..."
+        messageInputBar.inputTextView.placeholder = Configuration.shared.sendingMessage //"Sending..."
         self.messageInputBar.sendButton.stopAnimating()
         self.messageInputBar.inputTextView.placeholder = "Aa"
         let chatMessage = ChatMessage(text: message ?? "")
         self.insertMessage(chatMessage)
         self.messageSentCallback?(chatMessage)
         self.messagesCollectionView.scrollToBottom(animated: true)
-    
+        
     }
 }
 
@@ -251,13 +259,13 @@ public struct DriverMockUser : SenderType {
 }
 
 public class ChatMessage : ChatMessageType {
-
+    
     public var messageStatus: MessageDeliveryStatus = .none
     public var sender: SenderType
     public var messageId: String
     public var sentDate: Date
     public var kind: MessageKind
-
+    
     public init(text:String, sender: SenderType = Configuration.shared.currentUser) {
         
         self.sender = sender
