@@ -64,6 +64,10 @@ open class ChatViewController: MessagesViewController, MessagesDataSource {
         if self.presentingViewController != nil {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Close", style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissSelf))
         }
+        DispatchQueue.main.async {
+            self.messageInputBar.inputTextView.becomeFirstResponder()
+        }
+        
     }
     
     open override func viewDidDisappear(_ animated: Bool) {
