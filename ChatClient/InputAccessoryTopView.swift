@@ -27,7 +27,7 @@ class mInputItem : UIView, InputItem, UICollectionViewDataSource, UICollectionVi
         collectionView.delegate = self
         self.addSubview(collectionView)
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize.init(width: 1.0, height: 1.0)
+        layout.estimatedItemSize = CGSize.init(width: 10.0, height: 1.0)
         collectionView.showsHorizontalScrollIndicator = false
     }
     
